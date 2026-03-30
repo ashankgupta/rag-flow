@@ -34,9 +34,10 @@ RAG Flow enables you to build complex document processing and question-answering
 
 ### Prerequisites
 
-- Python 3.9+
-- Node.js 18+
-- Ollama installed and running
+- Python 3.9+ (if running locally)
+- Node.js 18+ (if running locally)
+- Docker & Docker Compose
+- Ollama installed and running (for LLM)
 
 ### Backend Setup
 
@@ -74,6 +75,22 @@ Make sure Ollama is running with the llama3 model:
 ollama pull llama3
 ollama serve
 ```
+
+### Docker Setup
+
+```bash
+# Build and run all services
+docker-compose up --build
+
+# Run in background
+docker-compose up -d --build
+```
+
+The services will be available at:
+- **Frontend**: http://localhost:5173
+- **Backend**: http://localhost:8000
+
+**Note**: The backend is configured to connect to Ollama on the host machine at `http://host.docker.internal:11434`. If Ollama runs elsewhere, update `OLLAMA_BASE_URL` in `docker-compose.yml`.
 
 ## API Endpoints
 
